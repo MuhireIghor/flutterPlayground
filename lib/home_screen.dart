@@ -8,12 +8,12 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  int currentIndex = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(actions: [
-        Container(
-            child: Row(
+      appBar: AppBar(centerTitle: true, actions: [
+        Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
@@ -31,15 +31,14 @@ class _HomePageState extends State<HomePage> {
               Text('Login')
             ]))
           ],
-        ))
+        )
       ]),
       body: Center(
         child: Container(
-          width: double.infinity,
-          height: double.infinity,
-          color: Colors.white,
-          child: Image.asset('images/flatHouse.jpg')
-        ),
+            width: double.infinity,
+            height: double.infinity,
+            color: Colors.white,
+            child: Image.asset('images/flatHouse.jpg')),
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
@@ -49,6 +48,12 @@ class _HomePageState extends State<HomePage> {
               icon: Icon(Icons.settings), label: 'Settings'),
           BottomNavigationBarItem(icon: Icon(Icons.menu), label: 'Menu')
         ],
+        onTap: (int index) {
+          setState(() {
+            currentIndex = index;
+          });
+        },
+        currentIndex: currentIndex,
       ),
     );
   }
